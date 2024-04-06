@@ -7,7 +7,8 @@ const searchImages = async (query, per_page) => {
   const params = {
     client_id: client_id,
     query: query,
-    per_page: 2,
+    per_page: 12,
+    orientation: "squarish",
   };
   const respons = await axios.get(url, { params });
 

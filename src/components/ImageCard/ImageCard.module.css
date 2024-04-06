@@ -1,0 +1,23 @@
+/* .container {
+  height: 200px;
+} */
+/* .description {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  border: 1px solid #808080;
+}
+.description p {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  align-items: center;
+  height: 30px;
+} */
+.galleryImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  overflow: auto;
+  align-items: start;
+}
