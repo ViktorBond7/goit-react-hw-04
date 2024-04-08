@@ -1,9 +1,4 @@
 import { useState, useEffect } from "react";
-// import { Hourglass } from "react-loader-spinner";
-// import ReactDOM from "react-dom";
-// import Modal from "react-modal";
-// import React from "react";
-
 import { Toaster } from "react-hot-toast";
 import "./App.css";
 import searchImages from "./components/api";
@@ -21,7 +16,6 @@ function App() {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const [showBtn, setShowBtn] = useState(false);
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [imege, setImage] = useState(null);
 
