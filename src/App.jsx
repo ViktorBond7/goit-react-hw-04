@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 // import { Hourglass } from "react-loader-spinner";
+// import ReactDOM from "react-dom";
+// import Modal from "react-modal";
+// import React from "react";
 
 import { Toaster } from "react-hot-toast";
 import "./App.css";
@@ -7,6 +10,8 @@ import searchImages from "./components/api";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Images from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
+import MoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
+import ModalWindow from "./components/ImageModal/ImageModal";
 
 function App() {
   const [images, setImages] = useState([]);
@@ -16,8 +21,20 @@ function App() {
   const [query, setQuery] = useState("");
   const [showBtn, setShowBtn] = useState(false);
 
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [imege, setImage] = useState(null);
+
+  const openModal = (image) => {
+    setModalIsOpen(true);
+    setImage(image);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   const searchImagesl = async (newQuery) => {
-    setQuery(newQuery);
+    setQuery(`${Date.now()}/${newQuery}`);
     setPage(1);
     setImages([]);
   };
@@ -34,8 +51,11 @@ function App() {
       try {
         setError(false);
         setLoader(true);
-        const { respons, totalPages } = await searchImages(query, page);
-        setImages(respons);
+        const { respons, totalPages } = await searchImages(
+          query.split("/")[1],
+          page
+        );
+        setImages((prevImages) => [...prevImages, ...respons]);
 
         setShowBtn(totalPages !== page && respons.length > 0);
       } catch (error) {
@@ -52,10 +72,19 @@ function App() {
       <div>
         <SearchBar onSearch={searchImagesl} />
         {error && <b>fhhfhhfh</b>}
-        {images.length > 0 && <Images images={images} />}
+        {images.length > 0 && (
+          <Images images={images} onImageClick={openModal} />
+        )}
         {loader && <Loader />}
         <Toaster position="top-right" />
-        {showBtn && !loader && <button onClick={handleMore}></button>}
+        {showBtn && !loader && <MoreBtn onClick={handleMore} />}
+        {imege && (
+          <ModalWindow
+            modalIsOpen={modalIsOpen}
+            closeModal={closeModal}
+            image={imege}
+          />
+        )}
       </div>
     </>
   );
