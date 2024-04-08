@@ -5,11 +5,10 @@ const searchImages = async (query, page) => {
   const BASE_URL = "https://api.unsplash.com/search/photos";
   const url = `${BASE_URL}`;
   const params = {
-    query: query,
-    client_id: client_id,
-    page: page,
+    query,
+    client_id,
+    page,
     per_page: 12,
-    orientation: "squarish",
   };
   const respons = await axios.get(url, { params });
 

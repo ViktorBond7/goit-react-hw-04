@@ -12,6 +12,7 @@ import Images from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 import MoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ModalWindow from "./components/ImageModal/ImageModal";
+import Error from "./components/ErrorMessage/ErrorMessage";
 
 function App() {
   const [images, setImages] = useState([]);
@@ -71,20 +72,19 @@ function App() {
     <>
       <div>
         <SearchBar onSearch={searchImagesl} />
-        {error && <b>fhhfhhfh</b>}
+        {error && <Error />}
         {images.length > 0 && (
           <Images images={images} onImageClick={openModal} />
         )}
         {loader && <Loader />}
         <Toaster position="top-right" />
         {showBtn && !loader && <MoreBtn onClick={handleMore} />}
-        {imege && (
-          <ModalWindow
-            modalIsOpen={modalIsOpen}
-            closeModal={closeModal}
-            image={imege}
-          />
-        )}
+
+        <ModalWindow
+          modalIsOpen={modalIsOpen}
+          closeModal={closeModal}
+          image={imege}
+        />
       </div>
     </>
   );

@@ -1,22 +1,14 @@
 import css from "./ImageCard.module.css";
-const Image = ({ image }) => {
+const Image = ({ image, onClick }) => {
   return (
     <>
-      <div className={css.container}>
+      <div onClick={onClick} className={css.container}>
         <img
           className={css.galleryImage}
           src={image.urls.small}
           alt={image.alt_description}
         />
       </div>
-      {/* <div className={css.description}>
-        <p>
-          <b>Likes</b>${image.likes}
-        </p>
-        <p>
-          <b>${image.alt_description}</b>
-        </p>
-      </div> */}
     </>
   );
 };

@@ -1,4 +1,6 @@
 import { toast } from "react-hot-toast";
+import css from "./SearchBar.module.css";
+import { FaSearch } from "react-icons/fa";
 const SearchBar = ({ onSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,16 +14,20 @@ const SearchBar = ({ onSearch }) => {
     e.target.reset();
   };
   return (
-    <header>
-      <form onSubmit={handleSubmit}>
+    <header className={css.container}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <input
+          className={css.input}
           type="text"
           name="query"
           // autocomplete="off"
           // autofocus
           placeholder="Search images and photos"
         />
-        <button type="submit">Search</button>
+        <FaSearch className={css.icon} />
+        <button className={css.btn} type="submit">
+          Search
+        </button>
       </form>
     </header>
   );
