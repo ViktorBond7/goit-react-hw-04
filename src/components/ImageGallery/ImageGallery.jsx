@@ -5,11 +5,9 @@ const Images = ({ images, onImageClick }) => {
   return (
     <ul className={css.list}>
       {images.map((image) => (
-        <div className={css.galleryItem} key={image.id}>
-          <li>
-            <Image image={image} onClick={() => onImageClick(image)} />
-          </li>
-        </div>
+        <li className={css.galleryItem} key={image.id}>
+          <Image image={image} onClick={() => onImageClick(image)} />
+        </li>
       ))}
     </ul>
   );
